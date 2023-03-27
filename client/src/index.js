@@ -190,10 +190,12 @@ SimpleSignalClient.prototype._onSafeConnect = function (peer, callback) {
 }
 
 SimpleSignalClient.prototype._closePeer = function (sessionId) {
-  const peer = this._peers[sessionId]
+  if (this._peers) {
+    const peer = this._peers[sessionId]
+    if (peer) peer.destroy()
+    delete this._peers[sessionId]
+  }
   this._clearTimer(sessionId)
-  delete this._peers[sessionId]
-  if (peer) peer.destroy()
 }
 
 SimpleSignalClient.prototype._startTimer = function (sessionId, cb) {
