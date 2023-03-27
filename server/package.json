@@ -1,13 +1,13 @@
 {
-  "name": "simple-signal-server",
+  "name": "@gurupras/simple-signal-server",
   "version": "3.0.0",
   "description": "socket.io signalling solution for simple-peer",
   "main": "src/index.js",
   "author": "Thomas Mullen",
   "license": "MIT",
   "dependencies": {
-    "inherits": "^2.0.3",
-    "nanobus": "^4.3.3"
+    "inherits": "^2.0.4",
+    "mitt": "^3.0.0"
   },
   "devDependencies": {
     "socket.io": "^1.7.3"
