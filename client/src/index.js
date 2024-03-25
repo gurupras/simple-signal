@@ -1,7 +1,10 @@
 const cuid = require('cuid')
-const mitt = require('mitt')
+let mitt = require('mitt')
 const SimplePeer = require('simple-peer')
 
+if (typeof mitt !== 'function') {
+  mitt = mitt.default
+}
 
 const ERR_CONNECTION_TIMEOUT = 'ERR_CONNECTION_TIMEOUT'
 const ERR_PREMATURE_CLOSE = 'ERR_PREMATURE_CLOSE'
