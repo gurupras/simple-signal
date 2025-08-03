@@ -283,3 +283,4 @@ export {
 }
 
 export default SimpleSignalClient
+export * from './types.js'
