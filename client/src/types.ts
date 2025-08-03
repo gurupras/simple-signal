@@ -1,7 +1,7 @@
-import SimplePeer from "simple-peer"
+import SimplePeer from 'simple-peer'
 
-export const ERR_CONNECTION_TIMEOUT = 'ERR_CONNECTION_TIMEOUT';
-export const ERR_PREMATURE_CLOSE = 'ERR_PREMATURE_CLOSE';
+export const ERR_CONNECTION_TIMEOUT = 'ERR_CONNECTION_TIMEOUT'
+export const ERR_PREMATURE_CLOSE = 'ERR_PREMATURE_CLOSE'
 
 // A minimal interface for the socket object, assuming a socket.io-like API.
 export interface Socket {
@@ -30,16 +30,18 @@ export interface Request extends RequestData {
 export type Events = {
   discover: any
   request: Request
-};
+}
 
 // Extend simple-peer's Instance type to include custom methods we add.
-export interface CustomPeer extends SimplePeer.Instance {
+export interface Instance extends SimplePeer.Instance {
   resolveMetadata?: ((metadata: any) => void) | null;
   reject?: (metadata: any) => void;
 }
 
+export interface CustomPeer extends Instance {} // TODO: Deprecated. Remove this in the next major release
+
 export type TranceiverRequestData = {
-  type: "transceiverRequest";
+  type: 'transceiverRequest';
   transceiverRequest: {
     kind: string;
     init?: RTCRtpTransceiverInit | undefined;
@@ -47,16 +49,16 @@ export type TranceiverRequestData = {
 }
 
 export type RenegotiateData = {
-    type: "renegotiate";
-    renegotiate: true;
+  type: 'renegotiate';
+  renegotiate: true;
 }
 
 export type CandidateData = {
-    type: "candidate";
-    candidate: RTCIceCandidate;
+  type: 'candidate';
+  candidate: RTCIceCandidate;
 }
 export type SignalData =
     | TranceiverRequestData
     | RenegotiateData
     | CandidateData
-    | RTCSessionDescriptionInit;
+    | RTCSessionDescriptionInit

@@ -4,7 +4,7 @@ import SimplePeer from 'simple-peer'
 import {
   Events,
   Socket,
-  CustomPeer,
+  Instance,
   SimpleSignalOptions,
   RequestData,
   ERR_CONNECTION_TIMEOUT,
@@ -24,7 +24,7 @@ class SimpleSignalClient {
   public socket: Socket | null
   private readonly _connectionTimeout: number
 
-  private _peers: Record<string, CustomPeer> | null
+  private _peers: Record<string, Instance> | null
   private _sessionQueues: Record<string, SimplePeer.SignalData[]> | null
   private readonly _timers: Map<string, NodeJS.Timeout>
 
@@ -75,7 +75,7 @@ class SimpleSignalClient {
     }
 
     peerOptions.initiator = false
-    const peer = this._peers[request.sessionId] = new SimplePeer(peerOptions) as CustomPeer
+    const peer = this._peers[request.sessionId] = new SimplePeer(peerOptions) as Instance
 
     peer.on('signal', (signal: SimplePeer.SignalData) => {
       this.socket?.emit('simple-signal[signal]', {
@@ -148,7 +148,7 @@ class SimpleSignalClient {
     }
   }
 
-  public connect (target: string, metadata: any = {}, peerOptions: SimplePeer.Options = {}): Promise<{ peer: SimplePeer.Instance; metadata: any }> {
+  public connect (target: string, metadata: any = {}, peerOptions: SimplePeer.Options = {}): Promise<{ peer: Instance; metadata: any }> {
     if (!this.id) {
       throw new Error('Must complete discovery first.')
     }
@@ -160,7 +160,7 @@ class SimpleSignalClient {
 
     const sessionId = nanoid()
     let firstOffer = true
-    const peer = this._peers[sessionId] = new SimplePeer(peerOptions) as CustomPeer
+    const peer = this._peers[sessionId] = new SimplePeer(peerOptions) as Instance
 
     peer.once('close', () => {
       this._closePeer(sessionId)
