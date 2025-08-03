@@ -1,4 +1,4 @@
-import cuid from 'cuid'
+import { nanoid } from 'nanoid'
 import mitt, { Emitter } from 'mitt'
 import SimplePeer from 'simple-peer'
 import {
@@ -158,7 +158,7 @@ class SimpleSignalClient {
 
     peerOptions.initiator = true
 
-    const sessionId = cuid()
+    const sessionId = nanoid()
     let firstOffer = true
     const peer = this._peers[sessionId] = new SimplePeer(peerOptions) as CustomPeer
 
