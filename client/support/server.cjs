@@ -1,8 +1,8 @@
-var io = require('socket.io')()
-var SimpleSignalServer = require('./../../server/src/index')
-var signal = new SimpleSignalServer(io)
+const io = require('socket.io')()
+const SimpleSignalServer = require('../../server/src/index')
+const signal = new SimpleSignalServer(io)
 
-var PORT = 3000
+const PORT = 3000
 
 signal.on('request', function (request) {
   request.forward()

@@ -1,33 +1,46 @@
 {
   "name": "@gurupras/simple-signal-client",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "socket.io signalling solution for simple-peer",
-  "main": "src/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
   "author": "Thomas Mullen",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "node support/server.cjs > /dev/null | npm run test-node",
+    "test-browser": "airtap -- test/*.cjs",
+    "test-browser-local": "airtap --local -- test/*.cjs",
+    "test-node": "WRTC=wrtc tape test/*.cjs"
+  },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "cuid": "^3.0.0",
     "inherits": "^2.0.4",
-    "mitt": "^3.0.0",
+    "mitt": "^3.0.1",
     "simple-peer": "^9.11.1"
   },
-  "scripts": {
-    "build": "browserify src/index.js -s SimpleSignalClient | minify >  ../dist/simple-signal-client.min.js",
-    "build-dev": "browserify src/index.js -s SimpleSignalClient -o ../dist/simple-signal-client.js",
-    "test": "node support/server.js > /dev/null | npm run test-node",
-    "test-browser": "airtap -- test/*.js",
-    "test-browser-local": "airtap --local -- test/*.js",
-    "test-node": "WRTC=wrtc tape test/*.js"
-  },
   "devDependencies": {
+    "@types/simple-peer": "^9.11.8",
     "airtap": "^0.1.0",
     "babel-minify": "^0.5.2",
     "browserify": "^14.1.0",
+    "eslint": "^9.32.0",
+    "neostandard": "^0.12.2",
     "socket.io": "^2.2.0",
     "socket.io-client": "^1.7.3",
-    "standard": "^8.6.0",
     "tape": "^4.6.3",
+    "typescript": "^5.8.3",
     "wrtc": "^0.4.2"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./dist/*"
   }
 }

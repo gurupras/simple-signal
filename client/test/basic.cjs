@@ -1,11 +1,11 @@
 const test = require('tape')
 const io = require('socket.io-client')
-const SimpleSignalClient = require('./../src/index')
+const SimpleSignalClient = require('../dist/index').default
 
 const TEST_SERVER_URL = 'http://localhost:3000'
 
 // For testing on node, we must provide a WebRTC implementation
-var wrtc
+let wrtc
 if (process.env.WRTC === 'wrtc') {
   wrtc = require('wrtc')
 }
@@ -14,10 +14,10 @@ const config = { wrtc }
 test('construct client', function (t) {
   t.plan(2)
 
-  var socket = io(TEST_SERVER_URL)
+  const socket = io(TEST_SERVER_URL)
 
   t.doesNotThrow(function () {
-    var client = new SimpleSignalClient(socket)
+    const client = new SimpleSignalClient(socket)
     t.equals(true, !!client)
     socket.emit('close')
   })
