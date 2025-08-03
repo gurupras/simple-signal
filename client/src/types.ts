@@ -7,6 +7,7 @@ export const ERR_PREMATURE_CLOSE = 'ERR_PREMATURE_CLOSE'
 export interface Socket {
   on(event: string, listener: (...args: any[]) => void): this;
   emit(event: string, ...args: any[]): this;
+  off(event: string, ...args: any[]): this
   close(): void;
   readonly id?: string;
 }

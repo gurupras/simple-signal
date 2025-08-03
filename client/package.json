@@ -1,6 +1,6 @@
 {
   "name": "@gurupras/simple-signal-client",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "description": "socket.io signalling solution for simple-peer",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
