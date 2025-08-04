@@ -1,15 +1,44 @@
 {
   "name": "@gurupras/simple-signal-server",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "socket.io signalling solution for simple-peer",
-  "main": "src/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
   "author": "Thomas Mullen",
   "license": "MIT",
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest"
+  },
   "dependencies": {
     "inherits": "^2.0.4",
     "mitt": "^3.0.0"
   },
   "devDependencies": {
-    "socket.io": "^1.7.3"
+    "@gurupras/test-helpers": "^0.7.4",
+    "@types/node": "^24.1.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.32.0",
+    "neostandard": "^0.12.2",
+    "socket.io": "^1.7.3",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.6",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4"
+  },
+  "files": [
+    "dist/**",
+    "eslint.config.js",
+    "tsconfig*.json"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./*": "./dist/*"
   }
 }
