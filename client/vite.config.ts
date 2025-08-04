@@ -15,12 +15,15 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       external: [
+        'mitt',
+        'nanoid',
         'simple-peer'
       ],
       output: {
         exports: 'named',
       }
-    }
+    },
+    minify: false
   },
   plugins: [dts({
     tsconfigPath: 'tsconfig.build.json',

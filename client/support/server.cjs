@@ -1,5 +1,5 @@
 const io = require('socket.io')()
-const SimpleSignalServer = require('../../server/src/index')
+const { SimpleSignalServer } = require('../../server/dist/index.cjs')
 const signal = new SimpleSignalServer(io)
 
 const PORT = 3000

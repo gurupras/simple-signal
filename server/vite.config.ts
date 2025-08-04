@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'SimpleSignalClient',
+      name: 'SimpleSignalServer',
       formats: ['es', 'cjs'],
       fileName: (format) => format === 'es' ? 'index.js' : 'index.cjs'
     },
@@ -15,15 +15,19 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       external: [
-        'simple-peer'
+        'simple-peer',
+        'mitt'
       ],
       output: {
         exports: 'named',
       }
-    }
+    },
+    minify: false
   },
-  plugins: [dts({
-    tsconfigPath: 'tsconfig.build.json',
-    include: ['src']
-  })]
+  plugins: [
+    dts({
+      tsconfigPath: 'tsconfig.build.json',
+      include: ['src']
+    })
+  ]
 })
